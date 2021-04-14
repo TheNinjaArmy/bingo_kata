@@ -25,22 +25,20 @@ class Welcome extends CI_Controller {
     protected $numbers_called=0;
 
 
-	public function index()
+	public function index()  //llama al metodo del controlador mediante http://bingo_kata.com/
 	{
-		$this->load->helper('url');
-		$this->load->view('welcome_message');
-		$this->load->model('numbers_model');
-		$numbers = $this->numbers_model->create();
+		$this->load->helper('url');   //define base_url()
+		$this->load->view('welcome_message');  //carga la pagina principal
+		$this->load->model('numbers_model');   //carga la clase numbers 
+		$numbers = $this->numbers_model->create();   //crea los numeros del bingo que se llaman
 	}
 
 	public function bingo_card()
 	{
 		$this->load->helper('url');
-		$bingo_card = [];
-		$this->load->model('welcome_message');
-		$bingo_card = $this->bingocard_model->create();
-		$this->load->view('view_bingo_card');
-		$this->bingocard_model->print_card($bingo_card);
+		$bingo_card = $this->bingocard_model->create();   //crea la tarjeta de bingo
+		$this->load->view('welcome_message');
+		$this->bingocard_model->print_card($bingo_card);   //imprime la tarjeta bingo
 	}
 
 	public function call_number()
@@ -50,7 +48,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('bingocard_model');
 		$this->load->view('welcome_message');
 		$this->bingocard_model->print_card($bingo_card);
-		$this->numbers_model->call_number();
+		$this->numbers_model->call_number();   //llama al siguiente numero en la lista del bingo
 	}
 
 
